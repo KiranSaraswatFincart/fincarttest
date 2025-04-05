@@ -1,19 +1,16 @@
 package com.uattest.uattest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import org.junit.jupiter.api.Test;
+public class AppTest{
+	
+	public static void main()
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\FINCART\\Downloads\\chromedriver-win64\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("https://uat-workpoint.fincart.com/");
+		
 
-/**
- * Unit test for simple App.
- */
-public class AppTest {
+	}
 
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
-    }
 }
