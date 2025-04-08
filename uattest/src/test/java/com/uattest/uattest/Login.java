@@ -37,26 +37,45 @@ public class Login extends BaseTest {
         WebElement invest = wait.until(ExpectedConditions.elementToBeClickable(By.id("radix-1")));
         invest.click();
         waitForLoaderToDisappear();
-
+        System.out.println("Clicked on invest dropdown");
         List<WebElement> dropdownItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@role='menuitem']")));
         dropdownItems.get(7).click();
         waitForLoaderToDisappear();
+        System.out.println("Clicked on UlS dropdown");
+        Thread.sleep(4000);
+        List<WebElement> investorList = wait.until(
+        	    ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class=' css-1n1vin2']"))
+        	);
 
-        List<WebElement> investorList = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class=' css-1n1vin2']")));
-        investorList.get(0).click();
+        	if (!investorList.isEmpty()) {
+        	    investorList.get(0).click();
+        	    System.out.println("Clicked on the first investor element.");
+        	} else {
+        	    System.out.println("Investor list is empty. No element to click.");
+        	}
+     
 
         String selectedInvestor = driver.findElement(By.xpath("//div[@class=' css-hlgwow']")).getText();
         Assert.assertEquals(selectedInvestor, "KEWAL SHARMA");
-
-        driver.findElement(By.xpath("//p[normalize-space()='Buy Now']")).click();
-        driver.switchTo().frame(0);
+        System.out.println("Clicked on invester name");
+        driver.findElement(By.xpath("//p[text()='Buy More']")).click();
+        
+        //Switch to next frame for buying stocks
         waitForLoaderToDisappear();
+       // driver.findElement(By.xpath("//p[normalize-space()='Buy Now']")).click();
+        driver.switchTo().frame(0);
+        System.out.println("Switched to frame");
+      
 
-        String uls = driver.findElement(By.xpath("//p[normalize-space()='CSK Unlisted Shares']")).getText();
+        String uls = driver.findElement(By.xpath("//p[text()='CSK Unlisted Shares']")).getText();
         if (uls.equals("CSK Unlisted Shares")) {
             driver.findElement(By.xpath("//p[normalize-space()='Buy']")).click();
         } else {
             System.out.println("Not the same ULS");
         }
+    List< WebElement> goals=(List<WebElement>) driver.findElement(By.id("react-select-ID-placeholder"));
+     goals.get(0).click();
+     
     }
+    
 }

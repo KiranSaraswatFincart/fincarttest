@@ -22,12 +22,7 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+ 
 
     public void waitForLoaderToDisappear() {
         try {
